@@ -6,13 +6,14 @@ type Student {
 }
 
 input StudentInput {
-  nome: String!
-  cpf: String!
-  email: String!
+  nome: String
+  cpf: String
+  email: String
 }
 
 type Query {
   students: [Student!]!
+  fetchStudents(filter: String): [Student!]!
 }
 
 type Mutation {
