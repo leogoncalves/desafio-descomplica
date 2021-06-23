@@ -1,10 +1,25 @@
+// require("dotenv").config();
+import dotenv from "dotenv";
+import { MongoClient } from "mongodb";
+
+// Temos de fazer o require para imports de projetos que não fornecem módulos
 const faker = require("faker/locale/pt_BR");
 const cpf = require("node-cpf");
-const MongClient = require("mongodb");
 
-const DB_URL = "mongodb://mongoose:27017";
-const DB_NAME = "graphql";
+// Carrega variáveis de ambiente
+dotenv.config();
 
+// Define constantes que serão utilizadas no seed
+const DB_URL = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}`;
+const DB_NAME = process.env.DB_NAME;
+const DB_COLLECTION = process.env.DB_COLLECTION;
+const AMOUNT_REGISTERS = process.env.AMOUNT_REGISTERS;
+
+/**
+ *
+ * @param {number} totalRegisters
+ * @returns array de Estudantes
+ */
 const create_seed_data = (totalRegisters) => {
   let iter;
   let students = [];
@@ -31,19 +46,31 @@ const create_seed_data = (totalRegisters) => {
   return students;
 };
 
-const create_database = () =>
-  MongClient.connect(DB_URL).then((client) => {
-    // Cria uma nova base
-    const database = client.db(DB_NAME);
+/**
+ *
+ * @param {collection: string, amountRegisters: number} param0
+ *
+ */
+const create_database = ({ collection, amountRegisters }) =>
+  MongoClient.connect(DB_URL)
+    .then((client) => {
+      // Cria uma nova base
+      const database = client.db(DB_NAME);
 
-    // Cria uma nova collection
-    database.createCollection("students");
+      database.dropCollection(collection);
 
-    const seed = create_seed_data(10);
+      // Cria uma nova collection
+      database.createCollection(collection);
 
-    database.collection("students").insertMany(seed);
+      const seed = create_seed_data(amountRegisters);
 
-    client.close();
-  });
+      database.collection(collection).insertMany(seed);
 
-create_database();
+      client.close();
+    })
+    .catch((error) => console.log(error));
+
+create_database({
+  collection: DB_COLLECTION,
+  amountRegisters: AMOUNT_REGISTERS,
+});
