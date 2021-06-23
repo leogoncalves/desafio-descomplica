@@ -5,10 +5,13 @@ services:
     container_name: mongoose
     image: mongo
     restart: unless-stopped
-    environment:
-      MONGO_INITDB_DATABASE: graphql
     ports:
       - 27017:27017
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 2048M
   descomplica-api:
     container_name: graphql-api
     build:
@@ -29,8 +32,5 @@ services:
         limits:
           cpus: "1"
           memory: 2048M
-        reservations:
-          cpus: "0.001"
-          memory: 200M
     depends_on:
       - mongo
