@@ -8,7 +8,10 @@ function startServer({ typeDefs, resolvers }) {
   });
 
   const server = new ApolloServer({ typeDefs, resolvers });
-  server.listen().then(({ url }) => console.log(`Server started at ${url}`));
+  server
+    .listen()
+    .then(({ url }) => console.log(`Server started at ${url}`))
+    .catch((error) => console.log(error));
 }
 
 export default startServer;
