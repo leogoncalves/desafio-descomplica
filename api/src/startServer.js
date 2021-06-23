@@ -13,7 +13,16 @@ function startServer({ typeDefs, resolvers }) {
     }
   );
 
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    cors: {
+      origin: "*",
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      preflightContinue: false,
+      optionsSuccessStatus: 204,
+    },
+  });
   server
     .listen()
     .then(({ url }) => console.log(`Server started at ${url}`))
