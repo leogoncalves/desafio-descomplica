@@ -1,11 +1,17 @@
 import { ApolloServer } from "apollo-server";
+import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+dotenv.config();
+
 function startServer({ typeDefs, resolvers }) {
-  mongoose.connect("mongodb://mongoose:27017/graphql", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  mongoose.connect(
+    `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  );
 
   const server = new ApolloServer({ typeDefs, resolvers });
   server
