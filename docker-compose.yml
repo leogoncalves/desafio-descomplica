@@ -1,0 +1,8 @@
+services:
+  mongo:
+    image: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: graphql
+    ports:
+      - 27017:27017
