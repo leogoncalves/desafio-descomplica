@@ -21,6 +21,8 @@ services:
       - "4000:4000"
     environment:
       NODE_ENV: development
+    env_file:
+      - ./api/.env
     deploy:
       resources:
         limits:
