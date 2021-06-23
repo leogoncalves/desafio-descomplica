@@ -16,7 +16,8 @@ services:
       target: dev
     volumes:
       - .:/api
-    command: npm run dev
+    command: >
+      sh -c "npm run seed && npm run dev"
     ports:
       - "4000:4000"
     environment:
