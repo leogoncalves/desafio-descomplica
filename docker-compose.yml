@@ -53,9 +53,9 @@ services:
           cpus: "1"
   nginx:
     container_name: reverse-proxy
-    image: nginx:1.13 # this will use the latest version of 1.13.x
+    image: nginx:1.13
     ports:
-      - "81:80" # expose 80 on host and sent to 80 in container
+      - "81:80"
     depends_on:
       - react-app
     volumes:
