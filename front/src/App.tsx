@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router";
-import "./App.css";
+import "./App.scss";
 import { Search } from "./components/Search";
 
 const App = () => (
