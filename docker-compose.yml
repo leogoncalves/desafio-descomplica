@@ -44,7 +44,7 @@ services:
     volumes:
       - ./front:/app
     command: >
-      sh -c "npm run start"
+      sh -c "npm rebuild node-sass && npm run start"
     env_file:
       - ./front/.env
     deploy:
