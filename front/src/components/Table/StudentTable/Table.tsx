@@ -1,5 +1,5 @@
 import { IStudent } from "../../../models/IStudent";
-import { formatterCPF } from "../../../utils.ts/formatters";
+import { formatterCPF } from "../../../utils/formatters";
 
 export const StudentTable = ({ students }: { students: IStudent[] }) => (
   <div className="table-container">
