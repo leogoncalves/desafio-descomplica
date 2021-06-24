@@ -20,10 +20,6 @@ export const ListStudentsPage = () => {
     }
   }, [loading, data]);
 
-  if (error) {
-    return <h1>Ops, tivemos um erro</h1>;
-  }
-
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setFilter(event.target.value);
@@ -34,20 +30,17 @@ export const ListStudentsPage = () => {
       <div className="column is-half mx-auto">
         <TextInput
           value={filter}
-          placeholder="Busque por nome, e-mail ou CPF de um estudante"
+          placeholder="Busque um estudante por nome, e-mail ou CPF"
           onChange={onChange}
           key="filter"
         />
-        <span className="pt-5">
-          * Não é necessário digitar a pontuação para pesquisar por CPF
-        </span>
       </div>
+
+      <span className="column is-half my-0 py-0 mx-auto">
+        * Não é necessário digitar a pontuação para pesquisar por CPF
+      </span>
       <div className="column is-half mx-auto">
-        {loading ? (
-          <ListStudentTitle title="Carregando" />
-        ) : (
-          <StudentTable students={students} />
-        )}
+        <StudentTable students={students} loading={loading} error={error} />
       </div>
     </div>
   );

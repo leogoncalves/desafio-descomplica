@@ -1,7 +1,14 @@
 import { IStudent } from "../../../models/IStudent";
 import { formatterCPF } from "../../../utils/formatters";
+import { ListStudentTitle } from "../../Title/ListStudentTitle";
 
-export const StudentTable = ({ students }: { students: IStudent[] }) => (
+interface IStudentTable {
+  students: IStudent[];
+  loading: boolean;
+  error: boolean;
+}
+
+export const StudentTable = ({ students, loading, error }: IStudentTable) => (
   <div className="table-container">
     <table className="table is-fullwidth is-bordered is-striped is-hoverable my-5 mx-auto">
       <thead>
@@ -21,5 +28,10 @@ export const StudentTable = ({ students }: { students: IStudent[] }) => (
         ))}
       </tbody>
     </table>
+    {loading ? <ListStudentTitle title="Carregando..." /> : null}
+    {students.length === 0 ? (
+      <ListStudentTitle title="Não foram encontrados registros." />
+    ) : null}
+    {error ? <ListStudentTitle title="Ops, tivemos algum problema." /> : null}
   </div>
 );
