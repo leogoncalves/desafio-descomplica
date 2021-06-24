@@ -22,6 +22,9 @@ function startServer({ typeDefs, resolvers }) {
       preflightContinue: false,
       optionsSuccessStatus: 204,
     },
+    cacheControl: {
+      defaultMaxAge: 60 * 60,
+    },
   });
   server
     .listen()
