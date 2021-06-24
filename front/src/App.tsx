@@ -1,24 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/client";
 
 function App() {
+  const [filter, setFilter] = useState<string>("");
+  const STUDENTS = gql`
+    query students($filter: String) {
+      fetchStudents(filter: $filter) {
+        nome
+        cpf
+        email
+      }
+    }
+  `;
+  const { loading, error, data } = useQuery(STUDENTS, {
+    variables: { filter },
+  });
+
+  if (loading) {
+    return <h1>Loading</h1>;
+  }
+  if (error) {
+    return <h1>Ops</h1>;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input onChange={(event) => setFilter(event.target.value)} type="text" />
+      <table>
+        <thead>
+          <tr>
+            <td>nome</td>
+            <td>cpf</td>
+            <td>email</td>
+          </tr>
+        </thead>
+        <tbody>
+          {data.fetchStudents.map((element: any, index: any) => (
+            <tr key={element.cpf}>
+              <td>{element.nome}</td>
+              <td>{element.cpf}</td>
+              <td>{element.email}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
