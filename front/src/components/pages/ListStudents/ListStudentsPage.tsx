@@ -43,7 +43,11 @@ export const ListStudentsPage = () => {
         </span>
       </div>
       <div className="column is-half mx-auto">
-        {loading ? <h1>Carregando</h1> : <StudentTable students={students} />}
+        {loading ? (
+          <ListStudentTitle title="Carregando" />
+        ) : (
+          <StudentTable students={students} />
+        )}
       </div>
     </div>
   );
