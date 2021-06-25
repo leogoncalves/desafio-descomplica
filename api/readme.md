@@ -110,6 +110,6 @@ AMOUNT_REGISTERS=200
 
 ## TO DO
 
-[] Adicionar paginação de resultados
-[] Adicionar ordenação de resultados
-[] Melhorar o uso do cache do Apollo Server
+- [ ] Adicionar paginação de resultados
+- [ ] Adicionar ordenação de resultados
+- [ ] Melhorar o uso do cache do Apollo Server
