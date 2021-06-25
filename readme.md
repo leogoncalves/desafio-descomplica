@@ -26,17 +26,15 @@ _Todos os dados cadastrados foram gerados automaticamente e qualquer semelhança
 
 # API
 
-Para a API, utilizamos Apollo Server + Mongoose.
+Para essa parte, desenvolvemos uma API simples com GraphQL que deverá retornar os estudantes cadastrados previamente na nossa base. Cada estudante deve ter um CPF, um nome e um e-mail. Como não temos informação sobre algum atributo poder ser opcional, todos foram considerados obrigatórios.
 
-Para essa parte, desenvolvemos uma API simples com GraphQL que deverá retornar os estudantes cadastrados previamente na nossa base.
+Usamos Mongoose para lidar com o Mongo e Apollo Server para GraphQL, além de Babel para transpilar o que escrevemos em ES6.
 
-Desenvolvida em js, usamos Mongoose + GraphQL + Apollo Server
-
-Babel será utilizado para fazer a transpilação do ES6.
+É possível subir a aplicação (com alguns dados já previamente inseridos) com o docker-compose no projeto.
 
 # Front
 
-Aplicação web em React + TypeScript que vai consumir os dados da nossa API.
+Nosso front é feito em React + Typescript. Também estamos usando Apollo Client para realizar consultas a nossa API, Bulma (com sass) para os estilos dos componentes, além de react-router-dom, que utilizamos para evitar o um usuário tente acessar algo que não exista e acabe caindo em uma tela vazia. Poderíamos ter feito essa última parte com redirecionamento no nginx, mas preferi fazer isso na aplicação.
 
 # docker-compose
 
