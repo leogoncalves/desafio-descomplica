@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { IStudent } from "../../../models/IStudent";
 import { TextInput } from "../../Input/Input";
-import { StudentTable } from "../../Table/StudentTable/Table";
+import { StudentTable } from "../../Table/StudentTable/StudentTable";
 import { ListStudentTitle } from "../../Title/ListStudentTitle";
 import { GET_STUDENTS_QUERY } from "./Query";
 
@@ -40,7 +40,7 @@ export const ListStudentsPage = () => {
         * Não é necessário digitar a pontuação para pesquisar por CPF
       </span>
       <div className="column is-half mx-auto">
-        <StudentTable students={students} loading={loading} error={error} />
+        <StudentTable students={students} loading={loading} error={!!error} />
       </div>
     </div>
   );
