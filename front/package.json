@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "mock-apollo-client": "^1.1.0",
     "source-map-explorer": "^2.5.2"
   }
 }
