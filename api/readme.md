@@ -1,6 +1,12 @@
 # GraphQL API
 
-Para esse projeto, temos a seguinte organização
+## Dados de teste
+
+Para poder testar a aplicação, utilizamos faker para gerar nomes e e-mails aleatórios e node-cpf para gerar cpfs válidos e populamos nossa base com esses dados. O script para isso está em `./src/seed/students.js`. Definimos um script para isso no nosso package.json, então para gerar novos dados, basta fazer `npm run seed`.
+
+## Estrutura de pastas
+
+Esse projeto está organizado da seguinte forma:
 
 ```
 .
@@ -20,10 +26,69 @@ Para esse projeto, temos a seguinte organização
 │   └── startServer.js
 ├── Dockerfile
 ├── package.json
+├── .env-example
 ├── readme.md
 └── run.sh
 
 ```
+
+Em graphql definimos nosso schema e, tipos e resolvers;
+
+Em models, definimos o modelo que será utilizado pelo Mongoose;
+
+Em startServer.js criamos nosso servidor com Apollo Server e estabelecemos a conexão com o banco de dados.
+
+## GraphQL
+
+Definimos duas consultas para a nossa api:
+
+\- Listar todos os estudantes cadastrados
+
+```gql
+query {
+  students {
+    nome
+    cpf
+    email
+  }
+}
+```
+
+\- Buscar estudantes filtrando por CPF, nome ou email. A variável filter deve receber o valor a ser procurado. Não é necessário utilizar pontuação para buscar por CPF.
+
+```gql
+query {
+  fetchStudents(filter: "") {
+    nome
+    cpf
+    email
+  }
+}
+```
+
+E uma mutation, para cadastrar novos estudantes
+
+\- Cadastrar um novo estudante
+
+```gql
+mutation {
+  createStudent(
+    data: {
+      nome: "Leonardo Alexandre"
+      email: "leonardo.goncalvs@mail.com"
+      cpf: "14554332440"
+    }
+  ) {
+    _id
+  }
+}
+```
+
+## Container
+
+Geramos nossa própria imagem a partir de uma imagem do alpine. Temos um Dockerfile e um run.sh, utilizado como entrypoint que serve para executar os comandos necessários para rodar a aplicação.
+
+## Variáveis de ambiente
 
 Temos no arquivo .env-example
 
@@ -46,4 +111,5 @@ AMOUNT_REGISTERS=200
 ## TO DO
 
 [] Adicionar paginação de resultados
-[] Corrigir uso do cache
+[] Adicionar ordenação de resultados
+[] Melhorar o uso do cache do Apollo Server
