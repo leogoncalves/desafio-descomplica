@@ -128,3 +128,23 @@ services:
 ```
 
 Aqui, precisamos fazer algumas considerações sobre decisões tomadas no desenvolvimento da aplicação
+
+Primeiro, sobre os serviços: para esse projeto, criamos 4 serviços, cada um deles cuidando de uma parte específica.
+
+- mongo
+  - Container para o mongodb, acessível pela porta 27017 (padrão do mongo).
+- descomplica-api
+  - Container para a nossa api em graphql, acessível pela porta 4000. Depende do container do mongodb e realiza build imagem que irá utilizar.
+- react-app
+  - Container para servir o front da nossa aplicação. Acessível pela porta 3000.
+- nginx:
+  - Nosso proxy reverso. Mapeia nossa aplicação em react para host:80 e nossa api para host:80/api
+
+Os containers que lidam com o mongo e a api utilizamo a flag deploy para delimitar o uso de recursos. Ambos utilizamo no máximo 1 core da cpu e 512MB de memória RAM.
+
+Para o descomplica-api, criamos um script que pode ser utilizado para popular a base de dados de estudantes. Esse script (npm run seed) está no entrypoint do Dockerfile que usamos para construir a imagem usada pelo container.
+
+Em react-app, também fazemos uso de um entrypoint, mas para executar dois comandos: npm rebuild sass (solução de contorno para um problema que temos ao instalar o node-sass no container) e npm run dev (para inicializar o server da aplicação em react).
+
+Os containers descomplica-api e react-app possuem volumes comentados no docker-compose e existe um motivo para isso. Durante o desenvolvimento, para fazer um "live-reload" do código da aplicação, fizemos o mapeamento da pasta do projeto (incluindo a node_modules). Com isso, não era necessário refazer o build a cada alteração (o que seria muito custoso).
+Recomendamos que caso exista a necessidade de fazer alterações, essas linhas sejam descomentadas. Depois, basta instalar as dependencias do projeto que for ser alterado com **npm install** ou **yarn**.
