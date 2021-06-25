@@ -9,10 +9,13 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 const apolloClient = new ApolloClient({
   uri: `${process.env.REACT_APP_APOLLO_LINK}`,
   cache: new InMemoryCache(),
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+  },
 });
 
 ReactDOM.render(
-  <BrowserRouter>
+    <BrowserRouter>
     <ApolloProvider client={apolloClient}>
       <App />
     </ApolloProvider>
