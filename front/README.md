@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# Começando com Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Utilizamos [Create React App](https://github.com/facebook/create-react-app) como bootstrap para o projeto.
 
-## Available Scripts
+## TL;DR
 
-In the project directory, you can run:
+Renomeie o arquivo `.env-example` para `.env`, instale os pacotes com `yarn` ou `npm install`.
+Em seguida, faça `npm run dev` ou `yarn dev` (para inicializar o server da aplicação em react).
+
+## Scripts
+
+No diretório desse projeto, é possíve executar:
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Executa a aplicação em desenvolvimento.\
+Abra [http://localhost:3000](http://localhost:3000) para ver o resultado no navegador.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+A página irá recarregar caso alguma edição seja feita em algum arquivo. Também é possível ver erros de lint no console.
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Executa os testes em modo iterativo.\
+Veja a [documentação](https://facebook.github.io/create-react-app/docs/running-tests) para mais informações.
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Gera uma build de produção na pasta `build`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Veja a [documentação](https://facebook.github.io/create-react-app/docs/deployment) para mais informação.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Outros comandos
 
-### `yarn eject`
+- yarn eject
+  - "Ejeta" do Create React App. Veja a [documentação](https://create-react-app.dev/docs/available-scripts/#npm-run-eject) para mais informação.
+- yarn analyze
+  - Realiza a análise do bundle gerado para produção.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Variáveis de ambiente
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+REACT_APP_APOLLO_LINK=http://localhost/api
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**REACT_APP_APOLLO_LINK define o link da nossa api GraphQL.**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Para desenvolvimento do projeto, é esperado que sejam utilizados os containers e serviços levantados com o docker-compose que está na raiz do projeto.**

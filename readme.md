@@ -1,6 +1,6 @@
 # Desafio Descomplica
 
-Nesse repositório está o código do desafio proposto para a vaga de desenvolvedor full-stack júnior para a Descomplica.
+Nesse repositório está o código do desafio proposto para a vaga de desenvolvedor full-stack júnior para a Descomplica. Esse foi o primeiro contato que tive com GraphQL, então aceito dicas de melhorias :smiley:.
 
 - **[TL;DR](#tldr)**
 - **[GraphQL API](#graphql-api)**
