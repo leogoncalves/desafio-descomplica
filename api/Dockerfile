@@ -6,3 +6,6 @@ WORKDIR /src
 FROM base as dev 
 ENV NODE_ENV=developement
 RUN npm install
+
+RUN chmod +x run.sh
+ENTRYPOINT [ "./run.sh" ]

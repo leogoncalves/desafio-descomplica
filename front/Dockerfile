@@ -5,4 +5,8 @@ COPY . ./
 
 FROM base as dev
 ENV NODE_ENV=development
+
 RUN npm install
+RUN chmod +x run.sh
+
+ENTRYPOINT [ "./run.sh" ]

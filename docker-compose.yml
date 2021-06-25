@@ -17,10 +17,8 @@ services:
     build:
       context: ./api/
       target: dev
-    volumes:
-      - .:/api
-    command: >
-      sh -c "npm run seed && npm run dev"
+    # volumes:
+    #   - .:/api
     ports:
       - "4000:4000"
     environment:
@@ -41,10 +39,8 @@ services:
     build:
       context: ./front/
       dockerfile: Dockerfile
-    volumes:
-      - ./front:/app
-    command: >
-      sh -c "npm rebuild node-sass && npm run start"
+    # volumes:
+    #   - ./front:/app
     env_file:
       - ./front/.env
     deploy:
@@ -55,7 +51,7 @@ services:
     container_name: reverse-proxy
     image: nginx:1.20-alpine
     ports:
-      - "81:80"
+      - "80:80"
     depends_on:
       - react-app
     volumes:
