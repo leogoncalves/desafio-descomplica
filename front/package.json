@@ -28,10 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "analyze": "yarn build && source-map-explorer 'build/static/js/*.js'",
-    "fix": "eslint --ext .js,.jsx,.ts,.tsx  --fix ./",
-    "format": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./"
+    "analyze": "yarn build && source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": [
