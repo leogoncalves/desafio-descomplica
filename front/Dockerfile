@@ -4,5 +4,5 @@ COPY package.json ./
 COPY . ./
 
 FROM base as dev
-ENV NODE_ENV=developement
+ENV NODE_ENV=development
 RUN npm install
